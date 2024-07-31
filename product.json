@@ -1665,7 +1665,6 @@
 	"npsSurveyUrl": "https://aka.ms/vscode-nps",
 	"cesSurveyUrl": "https://aka.ms/new-to-vscode-feedback",
 	"checksumFailMoreInfoUrl": "https://go.microsoft.com/fwlink/?LinkId=828886",
-	"electronRepository": "Microsoft/vscode-electron-prebuilt",
 	"nodejsRepository": "Microsoft/vscode-node",
 	"settingsSearchUrl": "https://bingsettingssearch.trafficmanager.net/api/Search",
 	"surveys": [
