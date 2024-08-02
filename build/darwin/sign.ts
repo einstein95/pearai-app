@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as fs from 'fs';
+import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 import * as codesign from 'electron-osx-sign';
 import { spawn } from '@malept/cross-spawn-promise';
@@ -14,6 +15,20 @@ function getElectronVersion(): string {
 	const yarnrc = fs.readFileSync(path.join(root, '.yarnrc'), 'utf8');
 	const target = /^target "(.*)"$/m.exec(yarnrc)![1];
 	return target;
+}
+
+async function copyExtension(targetDir: string) {
+	const sourceDir = '/Users/nathanan/.vscode/extensions/pearai.pearai-0.0.2';
+	const destDir = path.join(targetDir, 'Contents', 'Resources', 'app', 'extensions', 'pearai.pearai-0.0.2');
+
+	try {
+		await fsExtra.ensureDir(destDir); // Ensure destination directory exists
+		await fsExtra.copy(sourceDir, destDir, { recursive: true, overwrite: true }); // Copy the contents of the source directory
+		console.log(`Copied extension to ${destDir}`);
+	} catch (err) {
+		console.error(`Failed to copy extension: ${err}`);
+		throw err;
+	}
 }
 
 async function main(buildDir?: string): Promise<void> {
@@ -110,6 +125,8 @@ async function main(buildDir?: string): Promise<void> {
 			`${infoPlistPath}`
 		]);
 	}
+
+	await copyExtension(path.join(appRoot, appName));
 
 	await codesign.signAsync(gpuHelperOpts);
 	await codesign.signAsync(rendererHelperOpts);
