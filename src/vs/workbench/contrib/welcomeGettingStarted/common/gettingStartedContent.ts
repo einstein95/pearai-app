@@ -4,9 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 import 'vs/workbench/contrib/welcomeGettingStarted/common/media/theme_picker';
-import 'vs/workbench/contrib/welcomeGettingStarted/common/media/talkToCode.gif';
-import 'vs/workbench/contrib/welcomeGettingStarted/common/media/inlineEdit.gif';
-import 'vs/workbench/contrib/welcomeGettingStarted/common/media/noCopyPaste.gif';
 
 import 'vs/workbench/contrib/welcomeGettingStarted/common/media/notebookProfile';
 import { localize } from 'vs/nls';
